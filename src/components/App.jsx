@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FeedbackButtons from './FeedbackButtons/FeedbackButtons';
 import Section from './Section/Section';
 import Statistics from './Statistics/Statistics';
+import Notification from './Notification/Notification';
 
 export class App extends Component {
   state = {
@@ -9,7 +10,6 @@ export class App extends Component {
     neutral: 0,
     bad: 0,
   };
-
   onAddFeedback = event => {
     const option = event.currentTarget.textContent;
 
@@ -18,9 +18,16 @@ export class App extends Component {
     });
   };
 
+  totalFeedbacks = () => {
+    let total = 0;
+    Object.values(this.state).forEach(element => {
+      total += element;
+    });
+    return total;
+  };
+
   render() {
     const feedbackNames = Object.keys(this.state);
-
     return (
       <div
         style={{
@@ -36,7 +43,11 @@ export class App extends Component {
         </Section>
 
         <Section title="Statistics">
-          <Statistics state={this.state} />
+          {this.totalFeedbacks() > 0 ? (
+            <Statistics state={this.state} />
+          ) : (
+            <Notification message="There is no feedback" />
+          )}
         </Section>
       </div>
     );
