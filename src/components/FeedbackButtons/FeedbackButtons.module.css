@@ -1,0 +1,14 @@
+.feedbackButton {
+  background-color: transparent;
+  width: 60px;
+  height: 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.feedbackButton:active {
+  background-color: aqua;
+}
